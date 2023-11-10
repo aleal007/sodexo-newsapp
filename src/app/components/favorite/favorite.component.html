@@ -1,0 +1,91 @@
+<section class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
+                <div class="page-wrapper">
+                    <div class="blog-top clearfix">
+                        <h4 class="pull-left">Noticias Favoritas </h4>
+                    </div><!-- end blog-top -->
+                    
+                    <div class="alert alert-primary" role="alert" *ngIf="listNews.length == 0">
+                        No existen noticias en favoritos
+                    </div>
+
+                    <div class="blog-list clearfix">
+                        <div *ngFor="let news of listNews" class="blog-box row">
+                            <div class="col-md-4">
+                                <div class="post-media">
+                                    <a title="">
+                                        <img [src]="news.imageUrl" alt="" class="img-fluid">
+                                        <div class="hovereffect"></div>
+                                    </a>
+                                </div><!-- end media -->
+                            </div><!-- end col -->
+
+                            <div class="blog-meta big-meta col-md-8">
+                                <h4><a title="">{{ news.title }}</a></h4>
+                                <p> {{ news.summary }}</p>
+                                <small class="firstsmall"><a class="bg-orange hand" title="" (click)="delete(news.id)">Eliminar de Favoritos</a></small>
+                                <small><a title=""> {{ news.publishedAt | date: 'dd MMM yyyy'}}</a></small>
+                                <small><a title="">{{ news.newsSite }}</a></small>
+                                <small><a title="">Guardada en {{ news.savedAt | date: 'dd MMM yyyy'}}</a></small>
+                            </div><!-- end meta -->
+                        </div><!-- end blog-box -->
+
+                        <hr class="invis">             
+                       
+                    </div><!-- end blog-list -->
+                    <hr class="invis">
+                </div><!-- end page-wrapper -->
+
+                <hr class="invis">
+
+                <div class="row" *ngIf="listNews.length > 0">
+                    <div class="col-md-12">
+                        <nav aria-label="Page navigation">
+                            <ul class="pagination justify-content-start">
+                                <li class="page-item">
+                                    <button class="page-link" (click)="getFavorites(previous)" [disabled]="!last">Anterior</button>
+                                </li>
+                                <li class="page-item">
+                                    <button class="page-link" (click)="getFavorites(next)" [disabled]="last">Siguiente</button>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div><!-- end col -->
+                </div><!-- end row -->
+            </div><!-- end col -->
+
+            <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
+                <div class="sidebar">
+                    <div class="widget">
+                        <div class="banner-spot clearfix">
+                            <div class="banner-img">
+                                <img src="upload/banner_07.jpg" alt="" class="img-fluid">
+                            </div><!-- end banner-img -->
+                        </div><!-- end banner -->
+                    </div><!-- end widget -->
+
+                    <div class="widget">
+                        <h2 class="widget-title">Buscar Noticias</h2>
+                        <div class="navbar-nav mr-2">
+                            <div class="newsletter-widget text-left">
+                                <form class="form-inline">
+                                    <input type="text" #input (keyup)="search(input.value)" class="form-control" placeholder="Ingresa noticia a buscar">
+                                </form>
+                            </div><!-- search news -->
+                        </div>
+                    </div><!-- end widget -->
+
+                    <div class="widget">
+                        <div class="banner-spot clearfix">
+                            <div class="banner-img">
+                                <img src="upload/banner_03.jpg" alt="" class="img-fluid">
+                            </div><!-- end banner-img -->
+                        </div><!-- end banner -->
+                    </div><!-- end widget -->
+                </div><!-- end sidebar -->
+            </div><!-- end col -->
+        </div><!-- end row -->
+    </div><!-- end container -->
+</section>
